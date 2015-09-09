@@ -9,10 +9,9 @@
 <body>
 <% if current_user %>
 <!-- change to div -->
-<p>Welcome, <%= current_user.username %></p>
-<%= link_to "Logout", logout_path, :method => "delete" %>
-<% else %>
-<%= link_to "Sign In", login_path %>
+<p>Welcome, <%= current_user.username %> | <%= link_to "Logout", logout_path, :method => "delete" %></p>
+<% elsif !current_page?('/login') %>
+<p><%= link_to "Login", login_path %></p>
 <% end %>
 <%= yield %>
 
