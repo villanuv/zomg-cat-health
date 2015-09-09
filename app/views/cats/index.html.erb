@@ -1,0 +1,23 @@
+<h1>Cats Meow</h1>
+
+  <table class="allCats" border="1">
+    <thead>
+      <tr>
+        <th>pic</th>
+        <th>Description</th>
+        <th>ZOMG! Cute!</th>
+        <th>Amazing! So Beautiful!</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @cats.each do |cat| %>
+      <tr>
+        <td><img src="<%= cat.url %>" width="200" /></td>
+        <td><%= cat.description %></td>
+        <td>#</td>
+        <td>#</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
