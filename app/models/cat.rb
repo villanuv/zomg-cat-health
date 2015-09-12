@@ -5,4 +5,5 @@ class Cat < ActiveRecord::Base
 
   # associations
   belongs_to :user
+  has_many :votes, :dependent => :destroy
 end

@@ -16,35 +16,35 @@ RSpec.describe CatsController, type: :controller do
   #   end
   # end
 
-  # describe "GET #new" do
+  # describe "#new" do
   #   it "returns http success" do
   #     get :new
   #     expect(response).to have_http_status(:success)
   #   end
   # end
 
-  # describe "GET #edit" do
+  # describe "#edit" do
   #   it "returns http success" do
   #     get :edit
   #     expect(response).to have_http_status(:success)
   #   end
   # end
 
-  # describe "GET #create" do
+  # describe "#create" do
   #   it "returns http success" do
   #     get :create
   #     expect(response).to have_http_status(:success)
   #   end
   # end
 
-  # describe "GET #update" do
+  # describe "#update" do
   #   it "returns http success" do
   #     get :update
   #     expect(response).to have_http_status(:success)
   #   end
   # end
 
-  # describe "GET #destroy" do
+  # describe "#destroy" do
   #   it "returns http success" do
   #     get :destroy
   #     expect(response).to have_http_status(:success)
