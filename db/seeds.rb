@@ -35,3 +35,11 @@ Cat.create!(
   description: "Pikachu! Meow?",
   user_id: 2
 )
+
+25.times do
+  vote = Vote.new 
+  vote.option = rand(0..1)
+  vote.ip_address = Faker::Internet.ip_v4_address
+  vote.cat_id = Cat.all.sample.id
+  vote.save
+end
