@@ -1,23 +1,65 @@
-<h1>Cats Meow</h1>
+<h1 class="model-index">Cats Meow <%= link_to '<i class="fa fa-plus-circle"></i>'.html_safe, new_cat_path %></h1>
 
-  <table class="allCats" border="1">
+<div id="container">
+
+  <script type='text/template' id="cat-template">
+  <%% _.each(cats, function(cat) { %>  
+    <tr> 
+      <td><div class="imgDiv"><a href="/cats/<%%= cat.id %>"><img src="<%%= cat.url %>" /></a></div></td>
+      <td class="desc"><a href="/cats/<%%= cat.id %>"><%%= cat.description %></a><a href="/cats/<%%= cat.id %>/edit"><i class="fa fa-pencil"></i> <a data-confirm="Are you sure?" data-method="delete" href="/cats/<%%= cat.id %>" rel="nofollow"><i class="fa fa-trash"></i></a></td>
+      <td><span><%%= cat.zomg %></span></td>
+      <td><span><%%= cat.amazing %></span></td>
+    </tr>
+  <%% }); %>
+  </script>
+
+  <table class="allCats">
     <thead>
       <tr>
-        <th>pic</th>
-        <th>Description</th>
-        <th>ZOMG! Cute!</th>
-        <th>Amazing! So Beautiful!</th>
+        <th></th>
+        <th></th>
+        <th><a href="#" onclick="sortVotes(0, 'zomg');">ZOMG! Cute!</a></th>
+        <th><a href="#" onclick="sortVotes(1, 'amazing');">Amazing! So Beautiful!</a></th>
       </tr>
     </thead>
 
-    <tbody>
-      <% @cats.each do |cat| %>
-      <tr>
-        <td><img src="<%= cat.url %>" width="200" /></td>
-        <td><%= cat.description %></td>
-        <td>#</td>
-        <td>#</td>
-      </tr>
-      <% end %>
-    </tbody>
+    <tbody></tbody>
   </table>
+
+  <script>
+    var cat_view = $("#cat-template").html();
+
+    $(document).ready(function(){
+      $('table tbody').append(_.template(cat_view, {cats:cats}));
+    });
+  </script>
+  
+</div>
+
+<% content_for :jscats do %>
+<script>
+  var cats = [];
+  <% @cats.each do |cat| %>
+    cats.push({id: '<%= cat.id %>', url: '<%= cat.url %>', description: '<%= cat.description %>', zomg: '<%= cat.votes.where(option: 0).count %>', amazing: '<%= cat.votes.where(option: 1).count %>'});
+  <% end %>
+  var sortStatus = [false,false];
+
+  function displaySorted(){
+    $('table tbody').html('');
+    $('table tbody').append(_.template(cat_view, {cats:cats}));
+  }
+
+  function dataSort(index, keyValue){
+    cats = _.sortBy(cats, keyValue);
+    if (sortStatus[index] == false){
+      cats = cats.reverse();
+    }
+  }
+
+  function sortVotes(arrayIndex, key){
+    dataSort(arrayIndex, key);
+    sortStatus[arrayIndex] = !sortStatus[arrayIndex];
+    displaySorted();
+  }
+</script>
+<% end %>
