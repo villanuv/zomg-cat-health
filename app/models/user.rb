@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # validations
+  validates :username, presence: true
+  validates :password_confirmation, presence: true
+
   has_secure_password
 
   # associations
