@@ -8,7 +8,7 @@ HearkenFinal::Application.routes.draw do
   constraints(AuthConstraint.new) do
     resources :cats, only: [:index, :show, :new, :edit]
     resources :users, only: [:index, :show, :new, :edit]
-    get "/votes" => "votes#index"
+    resources :votes, only: [:index, :show]
   end
 
   get "/login" => "sessions#new"

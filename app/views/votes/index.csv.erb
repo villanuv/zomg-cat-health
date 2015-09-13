@@ -1,0 +1,6 @@
+<%- headers = [nil, 'cat url', 'ip address of voter', 'vote'] -%>
+<%= CSV.generate_line headers %>
+<%- @votes.each_with_index do |vote,index| -%>
+  <%- if vote.option == 0 ? label = "ZOMG! Cute!" : label = "Amazing! So Beautiful!" -%><%- end -%>
+  <%= CSV.generate_line([index+1, vote.cat.url, vote.ip_address, label]) %>
+<%- end -%>

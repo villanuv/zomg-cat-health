@@ -1,2 +1,31 @@
-<h1>Votes#index</h1>
-<p>Find me in app/views/votes/index.html.erb</p>
+<h1 class="model-index">All Votes (<%= @votes.count %>)</h1>
+
+<div id="container">
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Date</th>
+        <th>IP Address</th>
+        <th>Cat ID</th>      
+        <th>Option</th>
+        <th><%= link_to '<i class="fa fa-download"></i>'.html_safe, votes_path(format: :csv) %></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @votes.each_with_index do |vote, index| %>
+        <tr>
+          <td><%= index + 1 %>)</td>
+          <td><%= vote.created_at.strftime("%B %-d, %Y") %></td>
+          <td><%= vote.ip_address %></td>
+          <td><%= vote.cat_id %></td>
+          <td><% if vote.option == 0 %>ZOMG! Cute!<% else %>Amazing! So Beautiful!<% end %></td>
+          <td><%= link_to '<i class="fa fa-trash"></i>'.html_safe, vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
