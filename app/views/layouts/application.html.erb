@@ -11,12 +11,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="submenu">
 <% if current_user %>
-<!-- change to div -->
-<p>Welcome, <%= current_user.username %> | <%= link_to "Logout", logout_path, :method => "delete" %></p>
+    <ul>
+      <li><%= link_to 'Cat vs Cat', root_path %></li>
+      <li><%= link_to 'Cats Meow', cats_path %></li>
+      <li><%= link_to 'Votes', votes_path %></li>
+      <li><%= link_to 'Admin Users', users_path %></li>
+    </ul>
+    <div class="username">
+      <p>Welcome, <%= current_user.username %> | <%= link_to "Logout", logout_path, :method => "delete" %></p>
+    </div>
 <% elsif !current_page?('/login') %>
-<p><%= link_to "Login", login_path %></p>
+    <div class="username">
+      <p><%= link_to "Login", login_path %></p>
+    </div>
+<% elsif current_page?('/login') %>
+    <div class="username">
+      <p><%= link_to "Home", root_path %></p>
+    </div>
 <% end %>
+  </div>
+
 <%= yield %>
 
 </body>

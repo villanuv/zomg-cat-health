@@ -51,13 +51,13 @@ li {
   display: inline-block;
 }
 
-li a {
+li a, .username a:visited {
   color: #28A872;
 }
 
 .username {
   float: right;
-  padding: 10px 20px;
+  padding: 0 20px 0 0;
 }
 
 #container {
@@ -226,18 +226,23 @@ form {
   cursor: pointer;
 }
 
-#submenu a {
+#submenu a, .username a {
   text-decoration: none;
   font-weight: bold;
 }
 
-#submenu a:hover {
+#submenu a:hover, 
+.username a:hover {
   color: #228e5f;
 }
 
 .username {
   font-weight: bold;
   color: #228e5f;
+}
+
+.username p {
+  margin-top: 10px;
 }
 
 h1 a {
@@ -385,3 +390,6 @@ table.show tr:nth-child(2) td:first-child p {
   color: #B7D5BB;
 }
 
+.tdcenter {
+  text-align: center;
+}
