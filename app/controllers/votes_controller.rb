@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  before_action :set_vote, only: [:show, :destroy]
+
   def index
     @votes = Vote.all
     respond_to do |format|
@@ -10,6 +12,9 @@ class VotesController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def new
     @vote = Vote.new
   end
@@ -18,5 +23,18 @@ class VotesController < ApplicationController
   end
 
   def destroy
+    @vote.destroy
+    redirect_to votes_url
   end
+
+  private
+  
+    def set_vote
+      @vote = Vote.find(params[:id])
+    end
+
+    def vote_params
+      params.require(:vote).permit(:option, :ip_address, :cat_id)
+    end
+
 end
