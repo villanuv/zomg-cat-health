@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe VotesController, type: :controller do
-  render_views 
 
   describe "GET #index" do
     it "populates an array of votes" do
