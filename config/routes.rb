@@ -7,7 +7,7 @@ end
 HearkenFinal::Application.routes.draw do
   constraints(AuthConstraint.new) do
     resources :cats, only: [:index, :show, :new, :edit]
-    resources :users, only: [:index, :show, :new, :edit]
+    resources :users #, only: [:index, :show, :new, :edit]
     get "/votes/:id", to: redirect('/404')
     resources :votes, only: [:index, :show, :destroy]
   end
