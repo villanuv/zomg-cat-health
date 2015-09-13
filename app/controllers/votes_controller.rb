@@ -13,13 +13,18 @@ class VotesController < ApplicationController
   end
 
   def show
+    render :nothing => true
   end
 
   def new
     @vote = Vote.new
+    render :nothing => true
   end
 
   def create
+    @vote = Vote.new(vote_params)
+    @vote.save
+    redirect_to votes_url
   end
 
   def destroy
@@ -29,12 +34,12 @@ class VotesController < ApplicationController
 
   private
   
-    def set_vote
-      @vote = Vote.find(params[:id])
-    end
+  def set_vote
+    @vote = Vote.find(params[:id])
+  end
 
-    def vote_params
-      params.require(:vote).permit(:option, :ip_address, :cat_id)
-    end
+  def vote_params
+    params.require(:vote).permit(:option, :ip_address, :cat_id)
+  end
 
 end

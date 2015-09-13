@@ -9,7 +9,7 @@ HearkenFinal::Application.routes.draw do
     resources :cats #, only: [:index, :show, :new, :edit]
     resources :users #, only: [:index, :show, :new, :edit]
     get "/votes/:id", to: redirect('/404')
-    resources :votes, only: [:index, :show, :destroy]
+    resources :votes #, only: [:index, :show, :destroy]
   end
 
   get "/login" => "sessions#new"
