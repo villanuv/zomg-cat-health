@@ -14,6 +14,7 @@ group :development, :test do
   gem 'capybara', '~> 2.5.0'
   gem 'shoulda-matchers', '~> 2.4.0'
   gem 'faker'
+  gem 'factory_girl_rails', '~> 4.0'
 end
 
 group :doc do
