@@ -8,7 +8,8 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  # create and destroy methods
-  # tested with Capybara through features/login_spec.rb
+  describe "CREATE and DESTROY" do
+    pending "Tested with Capybara, features/login_spec.rb"
+  end
 
 end
