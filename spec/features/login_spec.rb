@@ -4,10 +4,11 @@ feature "Authentication:" do
 
   scenario "Existing users can log in" do
     visit "/login"
-    fill_in :username, with: "usertest"
-    fill_in :password, with: "password"
+    user = FactoryGirl.create(:user)
+    fill_in :username, with: user.username
+    fill_in :password, with: user.password
     click_on "Login"
-    expect(page).to have_content "Welcome, usertest"
+    expect(page).to have_content "Welcome, #{user.username}"
   end
 
   scenario "Non-existing users cannot sign in" do
@@ -20,11 +21,12 @@ feature "Authentication:" do
 
   scenario "Logout" do
     visit "/login"
-    fill_in :username, with: "usertest"
-    fill_in :password, with: "password"
+    user = FactoryGirl.create(:user)
+    fill_in :username, with: user.username
+    fill_in :password, with: user.password
     click_on "Login"
     click_link "Logout"
-    expect(page).to_not have_content "usertest"
+    expect(page).to_not have_content "#{user.username}"
   end
 
 end
