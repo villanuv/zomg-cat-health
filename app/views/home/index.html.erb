@@ -1,3 +1,28 @@
-<h1>Cat vs Cat</h1>
+<h1 class="index">Cat vs Cat</h1>
 
-<p>Cat Pictures</p>
+<div id="container">
+
+  <div class="catContainer">
+  <% @cats.each_with_index do |cat, index| %>
+    <div class="picWithBtn">
+    <div class="polaroid">
+    <div class="catImg"><img src="<%= cat.url %>" /></div>
+    <p><%= cat.description %></p>
+    </div>
+    <%= form_for(@vote) do |f| %>
+      <%= f.hidden_field :option, value: index %>
+      <%= f.hidden_field :ip_address, value: @ip %>
+      <%= f.hidden_field :cat_id, value: cat.id %>
+        <% if index == 0 %>
+          <% btnLabel = 'ZOMG! Cute!' %>
+        <% else %>
+          <% btnLabel = 'Amazing! So Beautiful!' %>
+        <% end %>
+      <%= f.submit btnLabel %>
+    <% end %>
+    </div>
+  <% end %>
+    <div class="clear"></div>
+  </div>
+
+</div>
