@@ -2,14 +2,34 @@
 <html>
 <head>
   <title>404</title>
-  <style>
-  </style>
+  <link href="/assets/application.css?body=1" media="all" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Slackey' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Gloria+Hallelujah' rel='stylesheet' type='text/css'>
+  <script>
+    function goHome(){
+      event.preventDefault();
+      location.href = '/';
+    }
+  </script>
 </head>
 
 <body>
-  <h1>404</h1>
-  <div>
-  <iframe width="420" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>
+  <div id="submenu">
+    <div class="username">
+      <p><a href="/">Home</a></p>
+    </div>
   </div>
+
+<h1 class="index">404</h1>
+
+<div id="container">  
+  <div class="catContainer">
+  <iframe width="420" height="315" src="https://www.youtube.com/embed/QH2-TGUlwu4?rel=0&amp;controls=0&amp;showinfo=0&amp;autoplay=1" frameborder="0" allowfullscreen></iframe>
+  <form action="#" onsubmit="goHome()" class="page_404" style="margin:20px auto 0;width:250px;">
+    <input name="commit" type="submit" class="new" value="Return to Home">
+  </form>
+  </div>
+</div>
 </body>
 </html>
