@@ -4,19 +4,3 @@
 <%= render 'form' %>
 
 </div>
-
-<% content_for :jsforms do %>
-<script>
-  $(document).ready(function(){
-    var newString = $('#cat_description').val().length;
-    $('#charNum span').text(40-newString);
-    $('textarea').keyup(function () {
-        var left = 40 - $(this).val().length;
-        if (left < 0) {
-            left = 0;
-        }
-        $('#charNum span').text(left);
-    });
-  });
-</script>
-<% end %>
