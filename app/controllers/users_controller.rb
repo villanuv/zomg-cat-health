@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @cats = @user.cats # add to tests
   end
 
   def new
