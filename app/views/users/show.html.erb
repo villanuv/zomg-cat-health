@@ -1,2 +1,27 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1>@<%= @user.username %></h1>
+<!-- <p id="notice"><%= notice %></p> -->
+
+<div id="container">
+  <table class="show">
+    <tbody>
+      <tr>
+        <td></td>
+        <td><%= link_to '<i class="fa fa-list"></i>'.html_safe, users_path %> <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_user_path %> <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <tr>
+        <td><strong>Admin Since</strong></td>
+        <td><p><%= @user.created_at.strftime("%B %-d, %Y") %></p></td>
+      </tr>
+      <tr>
+        <td><strong>Cat Photos (<%= @cats.count %>)</strong></td>
+        <td><% @cats.each do |cat| %>
+          <a href="/cats/<%= cat.id %>"><div class="imgDiv"><img src="<%= cat.url %>" /></div></a>
+        <% end %></td>
+      </tr>
+      <tr>
+        <td><strong>Last Image Added</strong></td>
+        <td><p><% if @cats.count != 0 %><%= @cats.order("created_at").last.created_at.strftime("%B %-d, %Y at %-l:%M%p") %><% else %>No Cats Yet<% end %></p></td>
+      </tr>
+    <tbody>
+  </table>
+</div>
