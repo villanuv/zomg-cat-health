@@ -1,0 +1,20 @@
+<%= form_for(@cat) do |f| %>
+  <div class="actions">
+    <table class="new-edit">
+      <tbody>
+        <tr><td></td><td><%= link_to '<i class="fa fa-ban"></i>'.html_safe, @cat %> <%= link_to '<i class="fa fa-list"></i>'.html_safe, cats_path %><% if !current_page? new_cat_path %> <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @cat, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td></tr>
+        <tr><td>URL</td><td><%= text_field :cat, :url %></td></tr>
+        <tr><td valign="top"><p>Description</p></td><td><%= text_area :cat, :description, maxlength: 40 %></td></tr>
+        <tr><td></td><td><div id="charNum"><span>40</span> characters left</div><%= f.submit %>&nbsp;&nbsp;<%= link_to 'Cancel', @cat %></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <% if @cat.errors.any? %>
+    <div id="error_explanation">
+      <% @cat.errors.full_messages.each do |msg| %>
+        *<%= msg %><br>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

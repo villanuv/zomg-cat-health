@@ -1,2 +1,22 @@
-<h1>Cats#new</h1>
-<p>Find me in app/views/cats/new.html.erb</p>
+<h1>Add Cat</h1>
+
+<div id="formContainer">
+<%= render 'form' %>
+
+</div>
+
+<% content_for :jsforms do %>
+<script>
+  $(document).ready(function(){
+    var newString = $('#cat_description').val().length;
+    $('#charNum span').text(40-newString);
+    $('textarea').keyup(function () {
+        var left = 40 - $(this).val().length;
+        if (left < 0) {
+            left = 0;
+        }
+        $('#charNum span').text(left);
+    });
+  });
+</script>
+<% end %>

@@ -1,2 +1,25 @@
-<h1>Cats#show</h1>
-<p>Find me in app/views/cats/show.html.erb</p>
+<h1>Cat #<%= @cat.id %></h1>
+<!--p id="notice"><%= notice %></p-->
+
+<div id="container">
+  <table class="show">
+    <tbody>
+      <tr>
+        <td></td>
+        <td><%= link_to '<i class="fa fa-list"></i>'.html_safe, cats_path %> <%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_cat_path %> <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @cat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <tr>
+        <td><img src="<%= @cat.url %>" class="showCatImg" /><p><%= @cat.description %></p></td>
+        <td>
+          <p><strong>Votes</strong><br>
+            "ZOMG! Cute!" - <strong><%= @cat.votes.where(option: 0).count %></strong><br>
+            "Amazing! So Beautiful!" - <strong><%= @cat.votes.where(option: 1).count %></strong>
+          </p>
+          <p><strong>URL</strong><br><%= @cat.url.truncate(44) %></p>
+          <p><strong>Contributor</strong><br><%= @cat.user.username %></p>
+          <p><strong>Date Added</strong><br><%= @cat.created_at.strftime("%B %-d, %Y") %></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
