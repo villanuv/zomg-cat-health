@@ -21,6 +21,8 @@ h1 {
 
 h1.index {
   margin: 100px 0 35px 0;
+  font-size: 68px;
+  letter-spacing: -3px;
 }
 
 h1.model-index {
