@@ -18,6 +18,8 @@ feature "Voting:" do
     visit '/votes'
     last_entry = find('table tbody tr:last-child').text
     expect(last_entry).to have_content('ZOMG! Cute!')
+
+    click_on "Logout"
   end
 
 end
