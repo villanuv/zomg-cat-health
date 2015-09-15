@@ -1,5 +1,5 @@
 case Rails.env
-when 'development'
+when 'development', 'production'
   require_relative 'seeds_development'
 
   Cat.create!(
