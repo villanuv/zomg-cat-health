@@ -16,10 +16,12 @@ RSpec.describe VotesController, type: :controller do
       end
     end
 
-    context "when format.csv" do      
+    context "when format.csv" do
       it "renders the :index csv format" do
         get :index, format: :csv
-        expect(request.headers).to_not be(nil)
+        header = response.headers
+        expect(header['Content-Disposition']).to eq("attachment; filename=\"cat-votes.csv\"")
+        expect(header['Content-Type']).to eq("text/csv")
       end
     end
   end
@@ -68,7 +70,7 @@ RSpec.describe VotesController, type: :controller do
 
   describe "DELETE #destroy" do
     before :each do
-      @vote = FactoryGirl.create(:vote, option: 0, ip_address: "10.0.0.1", cat_id: 1)
+      @vote = FactoryGirl.create(:vote)
     end
 
     it "deletes the vote" do
