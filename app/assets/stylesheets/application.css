@@ -209,6 +209,11 @@ form {
   margin-top: 30px;
 }
 
+.page_404 {
+  margin:20px auto 0;
+  width:250px;
+}
+
 .catContainer input {
   background: none;
   background-color: #28a870;
