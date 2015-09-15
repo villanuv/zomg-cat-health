@@ -2,6 +2,7 @@
 
 <div id="formContainer">
   <div class="actions">
+    <%= form_tag login_path do %>
     <table class="new-edit">
       <tbody>
 
@@ -12,14 +13,13 @@
 <% if current_user %>
   <tr><td colspan="2" class="tdcenter">You are logged in</td></tr>
 <% else %>
-  <%= form_tag login_path do %>
     <tr><td><%= label_tag :username %></td><td><%= text_field_tag :username %></td></tr>
     <tr><td><%= label_tag :password %></td><td><%= password_field_tag :password %></td></tr>
     <tr><td></td><td><%= submit_tag "Login" %></td></tr>
-  <% end %>
 <% end %>
 
       </tbody>
     </table>
+    <% end %>
   </div>
 </div>
