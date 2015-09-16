@@ -22,6 +22,12 @@ RSpec.describe UsersController, type: :controller do
       expect(assigns(:user)).to eq(user)
     end
 
+    it "assigns @cats to associated user's cats" do
+      user = FactoryGirl.create(:user)
+      get :show, id: user
+      expect(assigns(:user)).to respond_to(:cats)
+    end
+
     it "renders the :show view" do
       get :show, id: FactoryGirl.create(:user)
       expect(response).to render_template('show')
@@ -91,9 +97,21 @@ RSpec.describe UsersController, type: :controller do
         expect(@user.password).to eq("password")
       end
 
-      it "re-renders the edit user page with error" do
+      it "re-renders the edit user page with username error" do
         put :update, id: @user, user: FactoryGirl.attributes_for(:invalid_user)
-        expect(assigns(:error)).to eq('Update error. Try again.')
+        expect(assigns(:user).errors.messages[:username]).to have_content("can't be blank")
+        expect(response).to render_template('edit')
+      end
+
+      it "re-renders the edit user page with password error" do
+        put :update, id: @user, user: FactoryGirl.attributes_for(:invalid_user_pw)
+        expect(assigns(:user).errors.messages[:password]).to have_content("can't be blank")
+        expect(response).to render_template('edit')
+      end
+
+      it "re-renders the edit user page with password_confirmation error" do
+        put :update, id: @user, user: FactoryGirl.attributes_for(:invalid_user_conf)
+        expect(assigns(:user).errors.messages[:password_confirmation]).to have_content("can't be blank")
         expect(response).to render_template('edit')
       end
     end
@@ -122,9 +140,21 @@ RSpec.describe UsersController, type: :controller do
         }.to_not change(User, :count)
       end
 
-      it "re-renders the new user page with error" do
+      it "re-renders the new user page with username error" do
         post :create, user: FactoryGirl.attributes_for(:invalid_user)
-        expect(assigns(:error)).to eq('Create error. Try again.')
+        expect(assigns(:user).errors.messages[:username]).to have_content("can't be blank")
+        expect(response).to render_template('new')
+      end
+
+      it "re-renders the new user page with password error" do
+        post :create, user: FactoryGirl.attributes_for(:invalid_user_pw)
+        expect(assigns(:user).errors.messages[:password]).to have_content("can't be blank")
+        expect(response).to render_template('new')
+      end
+
+      it "re-renders the new user page with password_confirmation error" do
+        post :create, user: FactoryGirl.attributes_for(:invalid_user_conf)
+        expect(assigns(:user).errors.messages[:password_confirmation]).to have_content("can't be blank")
         expect(response).to render_template('new')
       end
     end

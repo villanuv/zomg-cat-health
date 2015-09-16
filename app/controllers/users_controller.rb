@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @cats = @user.cats # add to tests
+    @cats = @user.cats
   end
 
   def new
@@ -21,7 +21,6 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user
     else
-      @error = 'Create error. Try again.'
       render action: 'new'
     end
   end
@@ -30,7 +29,6 @@ class UsersController < ApplicationController
     if @user.update_attributes(user_params)
       redirect_to @user
     else
-      @error = 'Update error. Try again.'
       render action: 'edit'
     end
   end
