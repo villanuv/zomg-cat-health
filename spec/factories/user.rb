@@ -8,4 +8,12 @@ FactoryGirl.define do
   factory :invalid_user, parent: :user do
     username nil
   end
+
+  factory :invalid_user_pw, parent: :user do
+    password nil
+  end
+
+  factory :invalid_user_conf, parent: :user do
+    password_confirmation nil
+  end
 end
