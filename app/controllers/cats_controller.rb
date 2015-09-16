@@ -17,10 +17,10 @@ class CatsController < ApplicationController
 
   def create
     @cat = Cat.new(cat_params)
+    @cat.user = current_user
     if @cat.save
       redirect_to @cat
     else
-      @error = 'Create error. Try again.'
       render action: 'new'
     end
   end
@@ -29,7 +29,6 @@ class CatsController < ApplicationController
     if @cat.update_attributes(cat_params)
       redirect_to @cat
     else
-      @error = 'Update error. Try again.'
       render action: 'edit'
     end
   end
@@ -46,6 +45,6 @@ class CatsController < ApplicationController
   end
 
   def cat_params
-    params.require(:cat).permit(:url, :description, :cat_id)
+    params.require(:cat).permit(:url, :description, :user_id)
   end
 end

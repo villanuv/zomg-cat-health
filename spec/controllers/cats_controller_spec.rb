@@ -93,9 +93,15 @@ RSpec.describe CatsController, type: :controller do
         expect(@cat.user_id).to eq(1)
       end
 
-      it "re-renders the edit cat page with error" do
+      it "re-renders the edit cat page with url error" do
         put :update, id: @cat, cat: FactoryGirl.attributes_for(:invalid_cat)
-        expect(assigns(:error)).to eq('Update error. Try again.')
+        expect(assigns(:cat).errors.messages[:url]).to have_content("can't be blank")
+        expect(response).to render_template('edit')
+      end
+
+      it "re-renders the edit cat page with description error" do
+        put :update, id: @cat, cat: FactoryGirl.attributes_for(:invalid_cat_desc)
+        expect(assigns(:cat).errors.messages[:description]).to have_content("can't be blank")
         expect(response).to render_template('edit')
       end
     end
@@ -111,6 +117,10 @@ RSpec.describe CatsController, type: :controller do
         }.to change(Cat, :count).by(1)
       end
 
+      describe "assigns current_user to @cat.user" do
+        pending "Late addition. Not sure how to test."
+      end
+
       it "redirects to the new cat" do
         post :create, cat: FactoryGirl.attributes_for(:cat)
         expect(response).to redirect_to Cat.last
@@ -124,9 +134,15 @@ RSpec.describe CatsController, type: :controller do
         }.to_not change(Cat, :count)
       end
 
-      it "re-renders the new cat page with error" do
+      it "re-renders the new cat page with url error" do
         post :create, cat: FactoryGirl.attributes_for(:invalid_cat)
-        expect(assigns(:error)).to eq('Create error. Try again.')
+        expect(assigns(:cat).errors.messages[:url]).to have_content("can't be blank")
+        expect(response).to render_template('new')
+      end
+
+      it "re-renders the new cat page with description error" do
+        post :create, cat: FactoryGirl.attributes_for(:invalid_cat_desc)
+        expect(assigns(:cat).errors.messages[:description]).to have_content("can't be blank")
         expect(response).to render_template('new')
       end
     end
