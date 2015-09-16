@@ -12,13 +12,9 @@ class VotesController < ApplicationController
     end
   end
 
-  def show
-    render :nothing => true
-  end
-
   def new
     @vote = Vote.new
-    render :nothing => true
+    redirect_to '/404'
   end
 
   def create

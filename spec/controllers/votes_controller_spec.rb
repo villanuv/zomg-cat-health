@@ -26,28 +26,15 @@ RSpec.describe VotesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested vote to @vote" do
-      vote = FactoryGirl.create(:vote)
-      get :show, id: vote
-      expect(assigns(:vote)).to eq(vote)
-    end
-
-    it "does NOT render the :show view" do
-      get :show, id: FactoryGirl.create(:vote)
-      expect(response).to_not render_template('show')
-    end
-  end
-
   describe "GET #new" do
     it "assigns a new vote to @vote" do
       get :new
       expect(assigns(:vote)).to be_a_new(Vote)
     end
 
-    it "does NOT render the :new view" do
+    it "redirects to the 404 page, no template" do
       get :new
-      expect(response).to_not render_template('new')
+      expect(response).to redirect_to '/404'
     end
   end
 
