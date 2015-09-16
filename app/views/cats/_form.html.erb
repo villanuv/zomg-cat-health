@@ -1,3 +1,10 @@
+  <% if @cat.errors.any? %>
+    <div class="bgError">
+      <% @cat.errors.full_messages.each do |msg| %>
+        *<%= msg %><br>
+      <% end %>
+    </div>
+  <% end %>
 <%= form_for(@cat) do |f| %>
   <div class="actions">
     <table class="new-edit">
@@ -9,14 +16,6 @@
       </tbody>
     </table>
   </div>
-
-  <% if @cat.errors.any? %>
-    <div id="error_explanation">
-      <% @cat.errors.full_messages.each do |msg| %>
-        *<%= msg %><br>
-      <% end %>
-    </div>
-  <% end %>
 <% end %>
 
 <% content_for :jsforms do %>
