@@ -14,6 +14,8 @@ HearkenFinal::Application.routes.draw do
   get "/login" => "sessions#new"
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy"
+
+  resources :votes, only: [:create]
   
   root to: "home#index"
 
