@@ -6,8 +6,8 @@ end
 
 HearkenFinal::Application.routes.draw do
   constraints(AuthConstraint.new) do
-    resources :cats #, only: [:index, :show, :new, :edit]
-    resources :users #, only: [:index, :show, :new, :edit]
+    resources :cats
+    resources :users
     resources :votes, only: [:index, :new, :create, :destroy]
   end
 
