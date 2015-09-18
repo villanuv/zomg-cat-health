@@ -11,7 +11,7 @@
       <tbody>
         <tr><td></td><td><%= link_to '<i class="fa fa-ban"></i>'.html_safe, @user %> <%= link_to '<i class="fa fa-list"></i>'.html_safe, users_path %><% if !current_page? new_user_path %> <%= link_to '<i class="fa fa-trash"></i>'.html_safe, @user, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td></tr>
         <tr><td>Username</td><td><%= f.text_field :username %></td></tr>
-        <tr><td>Password</td><td><%= f.password_field :password_digest %></td></tr>
+        <tr><td>Password</td><td><%= f.password_field :password %></td></tr>
         <tr><td>Confirm Password</td><td><%= f.password_field :password_confirmation %></td></tr>
         <% if current_page? new_user_path %><% userVar = 'Create Admin' %><% else %><% userVar = 'Edit Admin' %><% end %>
         <tr><td></td><td><%= f.submit userVar %>&nbsp;&nbsp;<%= link_to 'Cancel', @user %></td></tr>
