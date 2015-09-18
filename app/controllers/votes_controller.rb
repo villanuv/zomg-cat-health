@@ -20,7 +20,7 @@ class VotesController < ApplicationController
   def create
     @vote = Vote.new(vote_params)
     @vote.save
-    redirect_to votes_url
+    redirect_to root_url
   end
 
   def destroy

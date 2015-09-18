@@ -47,9 +47,9 @@ RSpec.describe VotesController, type: :controller do
         }.to change(Vote, :count).by(1)
       end
 
-      it "redirects to the vote index page" do
+      it "redirects to the home page" do
         post :create, vote: FactoryGirl.attributes_for(:vote)
-        expect(response).to redirect_to votes_url
+        expect(response).to redirect_to root_url
       end
     end
 
