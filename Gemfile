@@ -17,6 +17,7 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.0'
   gem 'launchy'
   gem 'jasmine'
+  gem 'selenium-webdriver'
 end
 
 group :doc do
