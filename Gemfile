@@ -16,6 +16,7 @@ group :development, :test do
   gem 'faker', '~> 1.5.0'
   gem 'factory_girl_rails', '~> 4.0'
   gem 'launchy'
+  gem 'jasmine'
 end
 
 group :doc do
