@@ -21,15 +21,25 @@
 <% content_for :jsforms do %>
 <script>
   $(document).ready(function(){
-    var newString = $('#cat_description').val().length;
-    $('#charNum span').text(40-newString);
-    $('textarea').keyup(function () {
-        var left = 40 - $(this).val().length;
-        if (left < 0) {
-            left = 0;
-        }
-        $('#charNum span').text(left);
-    });
+
+    function charRemainInit() {
+      var descLength = $('#cat_description').val().length;
+      $('#charNum span').text(40-descLength);
+    }
+
+    function updateWhileTyping() {
+      $('textarea').keyup(function () {
+          var charRemain = 40 - $(this).val().length;
+          if (charRemain < 0) {
+              charRemain = 0;
+          }
+          $('#charNum span').text(charRemain);
+      });       
+    }
+
+    charRemainInit();
+    updateWhileTyping();
+
   });
 </script>
 <% end %>
