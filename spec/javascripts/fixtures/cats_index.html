@@ -1,0 +1,57 @@
+<script>
+    var cats = [];
+    cats.push({id: '1', url: 'http://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg', description: 'wide-eyed and worried kitten', zomg: '3', amazing: '1'});
+    cats.push({id: '2', url: 'http://cdn2.hellogiggles.com/wp-content/uploads/2014/02/17/kitten-cute-fluffyfunny-cat-kitten-fluffy-cute-animal-joke-silly-pet-scary-comedy-tshirt-pkgbbppi.jpg', description: 'furry kitten as grumpy cat', zomg: '2', amazing: '3'});
+    cats.push({id: '3', url: 'https://s-media-cache-ak0.pinimg.com/736x/41/ae/de/41aedefbf1961350e3e3df81d723dfac.jpg', description: 'sad kitty, poor kitty', zomg: '5', amazing: '0'});
+    cats.push({id: '4', url: 'https://catloves9.files.wordpress.com/2011/06/cute-kitten.jpg', description: 'this cat is sorry for something', zomg: '3', amazing: '3'});
+    cats.push({id: '5', url: 'https://s-media-cache-ak0.pinimg.com/originals/6b/45/5d/6b455d864ecce4270da03f9ff008736b.jpg', description: 'Pikachu! Meow?', zomg: '0', amazing: '5'});
+
+    var sortStatus = [false,false];
+
+    function displayCats(){
+      var cat_view = $("#cat-template").html();
+      $('table tbody').html('');
+      $('table tbody').append(_.template(cat_view, {cats:cats}));
+    }
+
+    function dataSort(index, key){
+      cats = _.sortBy(cats, key);
+      if (sortStatus[index] == false){
+        cats = cats.reverse();
+      }
+    }
+
+    function sortVotes(arrayIndex, key){
+      dataSort(arrayIndex, key);
+      sortStatus[arrayIndex] = !sortStatus[arrayIndex];
+      displayCats();
+    }
+
+    displayCats();
+
+</script>
+
+
+<script type='text/template' id="cat-template">
+<% _.each(cats, function(cat) { %>  
+  <tr> 
+    <td><div class="imgDiv"><a href="/cats/<%= cat.id %>"><img src="<%= cat.url %>" /></a></div></td>
+    <td class="desc"><a href="/cats/<%= cat.id %>"><%= cat.description %></a><a href="/cats/<%= cat.id %>/edit"><i class="fa fa-pencil"></i> <a data-confirm="Are you sure?" data-method="delete" href="/cats/<%= cat.id %>" rel="nofollow"><i class="fa fa-trash"></i></a></td>
+    <td><span><%= cat.zomg %></span></td>
+    <td><span><%= cat.amazing %></span></td>
+  </tr>
+<% }); %>
+</script>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th><a href="#" onclick="sortVotes(0, 'zomg');">ZOMG! Cute!</a></th>
+      <th><a href="#" onclick="sortVotes(1, 'amazing');">Amazing! So Beautiful!</a></th>
+    </tr>
+  </thead>
+
+  <tbody></tbody>
+</table>
