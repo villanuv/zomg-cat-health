@@ -183,14 +183,9 @@ h1 a, table td a {
   width: 120%;
   padding-bottom: 120%;
   box-shadow: inset 0px 0px 75px 75px rgba(0,0,0,0.6);
-  -webkit-box-shadow: inset 0px 0px 75px 75px rgba(0,0,0,0.6);
+  /*-webkit-box-shadow: inset 0px 0px 75px 75px rgba(0,0,0,0.6);*/
   -moz-box-shadow: inset 0px 0px 75px 75px rgba(0,0,0,0.6);
-}
-
-.catImg:after {
-  (;box-shadow: none !important;);
-  (;-webkit-box-shadow: none !important;);
-  (;-moz-box-shadow: none !important;);
+  -webkit-appearance: none;
 }
 
 .polaroid p {
