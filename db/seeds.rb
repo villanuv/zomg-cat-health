@@ -1,6 +1,6 @@
 case Rails.env
 when 'development', 'production'
-  require_relative 'seeds_development'
+  User.create!(username: "admin", password: "password", password_confirmation: "password")
 
   Cat.create!(
     url: "http://static2.businessinsider.com/image/4f3433986bb3f7b67a00003c/a-parasite-found-in-cats-could-be-manipulating-our-brains.jpg", 
